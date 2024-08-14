@@ -1,0 +1,83 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 200%; /* Altura suficiente para permitir scroll */
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #000;
+}
+
+/* Contenedor principal */
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    z-index: 1;
+    overflow: hidden;
+    transition: transform 1.5s ease-in-out;
+}
+
+/* Texto DEVELOP */
+.develop-text {
+    font-size: 10vw;
+    font-weight: bold;
+    z-index: 2;
+    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+}
+
+/* Iframe que contiene el video */
+.vidzflow-embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    transform: scale(1.2); /* Zoom inicial reducido */
+    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+    opacity: 0;
+}
+
+/* Clase aplicada cuando comienza el scroll */
+.zoom-in .vidzflow-embed {
+    transform: scale(1); /* Zoom natural del video */
+    opacity: 1;
+}
+
+.zoom-in .develop-text {
+    opacity: 0;
+}
+
+/* Nueva sección que aparece después del zoom */
+.after-zoom-content {
+    position: relative;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    padding: 100vh 20px 20px 20px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 2;
+}
+
+/* Clase para mostrar la nueva sección */
+.show-after-content .after-zoom-content {
+    opacity: 1;
+}
+
+/* Sección adicional */
+.additional-content {
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
