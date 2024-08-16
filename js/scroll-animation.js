@@ -1,28 +1,22 @@
-// Detectar el scroll
 window.addEventListener('scroll', function() {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
-    const triggerHeight = windowHeight * 0.5;
-    const showAfterContentHeight = windowHeight * 1.5; // Mostrar el contenido extra después del zoom
+    const triggerHeight = windowHeight * 0.3; // Al 90% del scroll
+    const container = document.querySelector('.container');
+    const video = document.querySelector('.vidzflow-embed');
+    const text = document.querySelector('.develop-text');
 
-    // Activar la clase de zoom cuando el usuario hace scroll
     if (scrollPosition > triggerHeight) {
-        document.querySelector('.container').classList.add('zoom-in');
+        container.classList.add('zoom-in');
     } else {
-        document.querySelector('.container').classList.remove('zoom-in');
+        container.classList.remove('zoom-in');
     }
 
-    // Mostrar el contenido extra cuando se hace más scroll
-    if (scrollPosition > showAfterContentHeight) {
-        document.body.classList.add('show-after-content');
+    if (scrollPosition > windowHeight) {
+        container.classList.remove('fixed');
+        container.classList.add('relative');
     } else {
-        document.body.classList.remove('show-after-content');
-    }
-
-    // Mostrar la sección adicional cuando se hace scroll
-    if (scrollPosition > showAfterContentHeight + windowHeight) {
-        document.querySelector('.additional-content').style.opacity = 1;
-    } else {
-        document.querySelector('.additional-content').style.opacity = 0;
+        container.classList.add('fixed');
+        container.classList.remove('relative');
     }
 });
