@@ -1,3 +1,7 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins&display=swap" rel="stylesheet">
+
 /* Estilos globales */
 body, html {
     margin: 0;
@@ -66,13 +70,112 @@ body, html {
 .zoom-in .develop-text {
     opacity: 0; /* Ocultar el texto después del zoom */
 }
-.content-below-video {
-    background-color: #fff;
+.content-info-personal {
+    display: flex;
+    flex-direction: row;
     color: #000;
     text-align: center;
-    padding: 20px;
-    margin-top: 890px; /* Aparece debajo del video */
+    margin-top: 1390px; /* Aparece debajo del video */
+    justify-content: space-around;
+    position: relative;
 }
+
+/* Mitad izquierda con fondo #ccf381 */
+.half-section.left {
+    background-color: #ccf381;
+    width: 30%; /* Ocupa el 70% de la sección */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #4831d4; /* Texto en azul oscuro */
+    z-index: -2;
+}
+
+/* Mitad derecha con fondo #4831d4 */
+.half-section.right {
+    background-color: #4831d4;
+    width: 70%; /* Ocupa el 30% de la sección */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ccf381; /* Texto en verde claro */
+    z-index: -4;
+}
+
+/* Estilos para la mitad de la sección con el fondo azul */
+.text-content {
+    width: 50%;
+    color: #ccf381; /* Texto en naranja sobre fondo azul */
+    margin-top: 150px;
+    margin-left: 150px;
+}
+
+/* Estilos para la mitad de la sección con el fondo naranja */
+.content-info-personal img {
+    z-index: -1;
+    width: 22%;
+    margin-top: 150px;
+    position: absolute;
+    left: 17.5rem;
+}
+
+.image-border {
+    z-index: -2;
+    position: absolute;
+    top: 200px;
+    left: 15.9rem;/* Ajusta según sea necesario para centrar el borde */
+    pointer-events: none; /* Permite que los clics pasen a través del SVG */
+}
+
+.half-section-icons.left {
+    background-color: #ccf381;
+    width: 30%; /* Ocupa el 70% de la sección */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 240px;
+}
+
+.half-section-icons.right {
+    background-color: #4831d4;
+    width: 70%; /* Ocupa el 70% de la sección */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 240px;
+}
+
+.content-info-personal p {
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-align: justify;
+}
+.tech-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1.7s ease-in-out;
+
+}
+
+.tech-icons img {
+    max-width: 80px; /* Tamaño máximo de los logos */
+    filter: grayscale(100%);
+    transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.tech-icons img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.show-icons {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .additional-content {
     background-color: #f0f0f0;
     color: #333;
