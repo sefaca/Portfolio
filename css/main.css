@@ -71,42 +71,43 @@ body, html {
     opacity: 0; /* Ocultar el texto después del zoom */
 }
 .content-info-personal {
+    margin-top: calc(140vh + 340px);
     display: flex;
     flex-direction: row;
     color: #000;
     text-align: center;
-    margin-top: 1390px; /* Aparece debajo del video */
+    /* margin-top: 1250px; Aparece debajo del video */
     justify-content: space-around;
     position: relative;
 }
 
 /* Mitad izquierda con fondo #ccf381 */
 .half-section.left {
-    background-color: #ccf381;
+    background-color: #E6DFD8;
     width: 30%; /* Ocupa el 70% de la sección */
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #4831d4; /* Texto en azul oscuro */
+    color: #EF412C; /* Texto en azul oscuro */
     z-index: -2;
+    height: 835px;
 }
 
-/* Mitad derecha con fondo #4831d4 */
+/* Mitad derecha con fondo #EF412C */
 .half-section.right {
-    background-color: #4831d4;
+    background-color: #EF412C;
     width: 70%; /* Ocupa el 30% de la sección */
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ccf381; /* Texto en verde claro */
+    color: #E6DFD8; /* Texto en verde claro */
     z-index: -4;
 }
 
 /* Estilos para la mitad de la sección con el fondo azul */
 .text-content {
     width: 50%;
-    color: #ccf381; /* Texto en naranja sobre fondo azul */
-    margin-top: 150px;
+    color: #E6DFD8; /* Texto en naranja sobre fondo azul */
     margin-left: 150px;
 }
 
@@ -114,21 +115,21 @@ body, html {
 .content-info-personal img {
     z-index: -1;
     width: 22%;
-    margin-top: 150px;
+    /* margin-top: 150px; */
     position: absolute;
+    top: 235px;
     left: 17.5rem;
 }
 
 .image-border {
     z-index: -2;
     position: absolute;
-    top: 200px;
+    top: 255px;
     left: 15.9rem;/* Ajusta según sea necesario para centrar el borde */
-    pointer-events: none; /* Permite que los clics pasen a través del SVG */
 }
 
 .half-section-icons.left {
-    background-color: #ccf381;
+    background-color: #E6DFD8;
     width: 30%; /* Ocupa el 70% de la sección */
     display: flex;
     justify-content: space-evenly;
@@ -137,7 +138,7 @@ body, html {
 }
 
 .half-section-icons.right {
-    background-color: #4831d4;
+    background-color: #EF412C;
     width: 70%; /* Ocupa el 70% de la sección */
     display: flex;
     justify-content: space-evenly;
@@ -151,12 +152,14 @@ body, html {
     text-align: justify;
 }
 .tech-icons {
+    position: relative;
+    top: -115px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     opacity: 0;
     transform: translateY(50px);
-    transition: all 1.7s ease-in-out;
+    transition: all 2s ease-in-out;
 
 }
 
@@ -186,3 +189,5 @@ body, html {
 .scroll-space {
     height: 200vh; /* Altura para permitir scroll y ver más contenido */
 }
+
+
