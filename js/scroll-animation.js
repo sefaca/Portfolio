@@ -1,6 +1,7 @@
 window.addEventListener('scroll', function() {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
+    var links = document.querySelectorAll('.nav_link');
 
     const container = document.querySelector('.container');
     const techIconsSection = document.querySelector('.tech-icons');
@@ -31,3 +32,4 @@ window.addEventListener('scroll', function() {
         techIconsSection.classList.add('show-icons');
     }
 });
+

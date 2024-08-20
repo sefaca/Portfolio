@@ -11,6 +11,102 @@ body, html {
     color: #000;
     overflow-x: hidden;
 }
+
+/* Enlaces de navegación en las esquinas */
+.corner-links {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.corner-links a {
+    font-family: 'Bebas Neue';
+    position: fixed;
+    color: black; /* Color inicial */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 0.4px;
+    pointer-events: all;
+    z-index: 5;
+    transition: color 0.3s ease;
+}
+
+/* Estilos para el círculo negro */
+.corner-links a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: currentColor;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+/* Círculo a la izquierda para los enlaces de la izquierda */
+#link-welcome::before,
+#link-about::before {
+    left: -12px;
+    top: 46.5%;
+    transform: translateY(-50%);
+}
+
+/* Círculo a la derecha para los enlaces de la derecha */
+#link-works::before,
+#link-example::before {
+    right: -12px;
+    top: 46.5%;
+    transform: translateY(-50%);
+}
+
+/* Animación para el círculo */
+.corner-links a:hover::before {
+    width: 9px;
+    height: 9px;
+}
+
+.corner-links a::before {
+    width: 0;
+    height: 0;
+}
+
+
+#link-welcome {
+    top: 40px;
+    left: 50px;
+}
+
+#link-works {
+    top: 40px;
+    right: 50px;
+}
+
+#link-about {
+    bottom: 40px;
+    left: 50px;
+}
+
+#link-example {
+    bottom: 40px;
+    right: 50px;
+}
+
+/* Clases para cambiar colores */
+.nav_link.is-white {
+    color: white;
+}
+
+.nav_link.is-black {
+    color: black;
+}
+
+.nav_link.is-red {
+    color: red;
+}
+
+/* Efecto visual adicional */
+
 .container {
     width: 100%;
     height: 100vh;
@@ -121,6 +217,10 @@ body, html {
     left: 17.5rem;
 }
 
+.content-info-personal h2 {
+    font-family: 'Bebas Neue';
+}
+
 .image-border {
     z-index: -2;
     position: absolute;
@@ -150,6 +250,7 @@ body, html {
     font-size: 30px;
     letter-spacing: 2px;
     text-align: justify;
+    font-family: 'Bebas Neue';
 }
 .tech-icons {
     position: relative;
@@ -160,7 +261,8 @@ body, html {
     opacity: 0;
     transform: translateY(50px);
     transition: all 2s ease-in-out;
-
+    margin-right: 100px;
+    margin-left: 100px;
 }
 
 .tech-icons img {
