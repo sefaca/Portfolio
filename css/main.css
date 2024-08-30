@@ -10,6 +10,44 @@ body, html {
     background-color: #fff;
     color: #000;
     overflow-x: hidden;
+    cursor: none; /* Oculta el cursor predeterminado */
+}
+
+/* Estilos para el contenedor del cursor personalizado */
+.cursor {
+    position: fixed;
+    width: 40px; /* Tamaño del círculo exterior */
+    height: 40px;
+    border: 2px solid #000; /* Color del círculo exterior */
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    /* z-index: 9999; */
+    /* mix-blend-mode: difference; Mezcla de colores */
+}
+
+/* Estilos para el punto interior */
+.cursor .inner {
+    width: 6px; /* Tamaño del punto interior */
+    height: 6px;
+    background-color: #000; /* Color del punto interior */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Expande el círculo exterior al pasar por enlaces */
+.cursor.hover {
+    width: 60px; /* Tamaño al hacer hover */
+    height: 60px;
+}
+
+/* Hacer que el círculo sea menos visible al hacer hover sobre enlaces */
+.cursor.hover .inner {
+    opacity: 0.6;
 }
 
 /* Enlaces de navegación en las esquinas */
