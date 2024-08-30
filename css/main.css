@@ -319,15 +319,382 @@ body, html {
     transform: translateY(0);
 }
 
-.additional-content {
-    background-color: #f0f0f0;
+/* .my-work-section {
+    background-color: #1a191d;
     color: #333;
     text-align: center;
     padding: 20px;
     margin-top: 20px;
 }
+.my-work-section h1 {
+    color: #E6DFD8;
+    font-size: 100px;
+    font-family: 'Playfair';
+}
+
+.my-work-section video {
+    height: 500px;
+    display: block;
+    margin: 0 auto;
+} */
+
 .scroll-space {
     height: 200vh; /* Altura para permitir scroll y ver más contenido */
 }
 
+.my-work-section {
+    background-color: #252123;
+    color: #E6DFD8;
+    text-align: center;
+    padding: 50px 100px;
+    margin-top: -68px;
+}
+
+.my-work-section h1 {
+    font-size: 60px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-family: 'Playfair Display', serif;
+}
+
+.intro-text {
+    font-size: 20px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.work-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.video-container {
+    flex: 1;
+    max-width: 45%;
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.description {
+    flex: 1;
+    max-width: 45%;
+    text-align: left;
+    padding: 0 20px;
+}
+
+.description h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.description p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Estilos para la disposición izquierda-derecha */
+.left {
+    order: 1;
+}
+
+.right {
+    order: 2;
+}
+
+.filter-menu {
+    display: flex;
+    width: 400px;
+    justify-content: space-around;
+    color: #E6DFD8;
+    font-weight: bold;
+}
+
+.option-menu {
+    cursor: pointer;
+}
+
+/* Efecto hover */
+.option-menu:hover {
+    color: #00D044;
+}
+
+/* Clases específicas para ocultar y animar las secciones */
+.left-hidden {
+    opacity: 0;
+    transform: translateX(-100px); /* Mover desde la izquierda hacia la derecha */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.right-hidden {
+    opacity: 0;
+    transform: translateX(100px); /* Mover desde la derecha hacia la izquierda */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.show-left {
+    opacity: 1;
+    transform: translateX(0); /* Regresa a su posición original desde la izquierda */
+}
+
+.show-right {
+    opacity: 1;
+    transform: translateX(0); /* Regresa a su posición original desde la derecha */
+}
+
+/* Otros estilos para .cook-mate-preview-app-left y .cook-mate-preview-app-right */
+.cook-mate-preview-app-left {
+    display: flex;
+    align-items: center;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #E6DFD8;
+    padding-left: 110px;
+    position: relative;
+    margin: 80px auto 160px auto;
+    height: 250px;
+    width: 70%;
+}
+
+.cook-mate-preview-app-left img {
+    height: 350px;
+    border-radius: 10px;
+    position: absolute;
+    top: -50px;
+}
+
+.project-preview-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 55%;
+    margin-left: auto;
+    text-align: justify;
+    padding-right: 85px;
+}
+
+.cook-mate-preview-app-right {
+    display: flex;
+    align-items: center;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #E6DFD8;
+    padding-right: 110px;
+    position: relative;
+    margin: 80px auto 160px auto;
+    height: 250px;
+    width: 70%;
+}
+
+.cook-mate-preview-app-right img {
+    height: 350px;
+    width: auto;
+    border-radius: 10px;
+    position: absolute;
+    top: -50px;
+    right: 85px;
+}
+
+.project-preview-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 55%;
+    margin-right: auto;
+    text-align: justify;
+    padding-left: 110px;
+}
+
+.image-container {
+    overflow: hidden;
+    display: inline-block;
+}
+
+.project-image {
+    transition: transform 1s ease;
+    display: block;
+}
+
+.image-side-ornament-right {
+    position: absolute;
+    right: -100px; /* Inicia fuera del contenedor, a la derecha */
+    top: 50%;
+    transform: translateY(5%) translateX(-40px);
+    transition: right 1s ease, opacity 1s ease;
+    opacity: 0; /* Inicialmente invisible */
+    z-index: -5; /* Aparece por encima de la imagen */
+}
+
+.image-bottom-ornament-right {
+    position: absolute;
+    left: 60px; /* Inicia fuera del contenedor, a la derecha */
+    top: 50%;
+    transform: translateY(285px) translateX(629px);
+    transition: left 1s ease, opacity 1s ease;
+    opacity: 0;
+    z-index: -5;
+}
+
+.image-side-ornament-left {
+    position: absolute;
+    left: 112px;
+    top: 50%;
+    transform: translateY(5%) translateX(60px);
+    transition: left 1s ease, opacity 1s ease;
+    opacity: 0;
+    z-index: -5;
+}
+
+.image-bottom-ornament-left {
+    position: absolute;
+    right: 64px;
+    top: 50%;
+    transform: translateY(285px) translateX(-604px);
+    transition: right 1s ease, opacity 1s ease;
+    opacity: 0;
+    z-index: -5;
+}
+
+/* Efecto hover */
+.image-container:hover .project-image {
+    transform: scale(1.1); /* Zoom en la imagen al pasar el cursor */
+}
+
+.image-container:hover .image-side-ornament-right {
+    right: 20px;
+    opacity: 1; 
+}
+
+.image-container:hover .image-bottom-ornament-right {
+    left: 10px;
+    opacity: 1; 
+}
+
+.image-container:hover .image-side-ornament-left {
+    left: 20px;
+    opacity: 1; 
+}
+
+.image-container:hover .image-bottom-ornament-left {
+    right: 10px;
+    opacity: 1; 
+}
+
+/* Proyectos website */
+.website-preview-app-left {
+    display: flex;
+    align-items: center;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #E6DFD8;
+    padding-left: 60px;
+    position: relative;
+    margin: 80px auto 160px auto;
+    height: 250px;
+    width: 80%;
+}
+
+.website-preview-app-left img {
+    height: 320px;
+    border-radius: 10px;
+    position: absolute;
+    top: -40px;
+}
+
+.website-project-preview-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 45%;
+    margin-left: auto;
+    text-align: justify;
+    padding-right: 57px;
+}
+
+.website-preview-app-right {
+    display: flex;
+    align-items: center;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #E6DFD8;
+    padding-right: 60px;
+    position: relative;
+    margin: 80px auto 160px auto;
+    height: 250px;
+    width: 80%;
+}
+
+.website-preview-app-right img {
+    height: 283px;
+    width: auto;
+    border-radius: 10px;
+    position: absolute;
+    top: -19px;
+    right: 32px;
+}
+
+.website-project-preview-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 43%;
+    margin-right: auto;
+    text-align: justify;
+    padding-left: 57px;
+}
+
+/* Efecto hover */
+.website-image-container:hover .project-image {
+    transform: scale(1.1); /* Zoom en la imagen al pasar el cursor */
+}
+
+
+.project-preview button {
+    width: 100px;
+}
+
+/* Cambiar disposición en dispositivos móviles */
+@media (max-width: 768px) {
+    .work-row {
+        flex-direction: column;
+    }
+    
+    .left, .right {
+        order: 0;
+        max-width: 100%;
+    }
+    
+    .description {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .cook-mate-preview-app-left img {
+        height: 150px;
+        border-radius: 10px;
+        position: absolute;
+        top: -50px;
+    }
+
+    .cook-mate-preview-app-right img {
+        height: 150px;
+        border-radius: 10px;
+        position: absolute;
+        top: -50px;
+        right: 85px;
+    }
+}
 
