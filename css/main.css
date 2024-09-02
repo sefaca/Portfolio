@@ -666,6 +666,133 @@ body, html {
     width: 100px;
 }
 
+/* Contact section */
+
+#contact {
+    padding: 50px 0;
+    text-align: center;
+    background-color: #f7f7ff;
+}
+
+.contact-container {
+    width: 737px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.contact-container h1 {
+    font-size: 3.7em;
+    color: #5e2ced;
+    margin-bottom: 10px;
+}
+
+.contact-container p {
+    font-size: 1.6em;
+    color: #7e7e7e;
+    letter-spacing: 0.02em;
+    width: 530px;
+    margin: auto;
+    margin-bottom: 80px;
+}
+
+.contact-form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.contact-input-group {
+    width: 330px;
+    text-align: left;
+}
+
+.contact-input-group label {
+    display: block;
+    font-size: 0.9em;
+    color: #b1b1b1;
+    margin-bottom: 5px;
+}
+
+.contact-input-group input {
+    width: 100%;
+    padding: 10px;
+    padding-left: 0px;
+    font-size: 1em;
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid #5e2ced;
+    background: transparent;
+    color: #5e2ced;
+}
+
+.contact-textarea-group {
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.contact-textarea-group label {
+    display: block;
+    font-size: 0.9em;
+    color: #b1b1b1;
+    margin-bottom: 5px;
+}
+
+.contact-textarea-group textarea {
+    width: 100%;
+    padding: 10px;
+    padding-left: 0;
+    font-size: 1.4em;
+    border: 0;
+    border-bottom: 1px solid #5e2ced;
+    background: transparent;
+    outline: none;
+    color: #5e2ced;
+    height: 70px;
+    resize: vertical;
+}
+
+.contact-submit-btn {
+    background-color: #ffffff;
+    border: 2px solid #5e2ced;
+    color: #5e2ced;
+    font-size: 1em;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    width: 300px;
+    justify-content: center;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.contact-submit-btn span {
+    margin-left: 10px;
+    font-size: 1.2em;
+    transition: margin-left 0.3s ease;
+}
+
+.bow-arrow {
+    margin-left: 20px;
+    transition: stroke 0.3s ease;
+}
+
+.contact-submit-btn:hover {
+    background-color: #5e2ced;
+    color: #ffffff;
+}
+
+.contact-submit-btn:hover span {
+    margin-left: 15px;
+}
+
+.contact-submit-btn:hover .bow-arrow path {
+    stroke: #ffffff;
+}
+
+
+
 /* Cambiar disposición en dispositivos móviles */
 @media (max-width: 768px) {
     .work-row {
