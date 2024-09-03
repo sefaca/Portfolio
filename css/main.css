@@ -18,7 +18,7 @@ body, html {
     position: fixed;
     width: 40px; /* Tamaño del círculo exterior */
     height: 40px;
-    border: 2px solid #000; /* Color del círculo exterior */
+    border: 2px solid #E6DFD8; /* Color del círculo exterior */
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
@@ -31,7 +31,7 @@ body, html {
 .cursor .inner {
     width: 6px; /* Tamaño del punto interior */
     height: 6px;
-    background-color: #000; /* Color del punto interior */
+    background-color: #E6DFD8; /* Color del punto interior */
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -338,9 +338,7 @@ body, html {
     margin: 0 auto;
 } */
 
-.scroll-space {
-    height: 200vh; /* Altura para permitir scroll y ver más contenido */
-}
+
 
 .my-work-section {
     background-color: #252123;
@@ -791,6 +789,138 @@ body, html {
     stroke: #ffffff;
 }
 
+/* Footer */
+
+.footer-title {
+    background-color: black;
+    color: white;
+    font-size: 0.9rem;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.footer-social-container {
+    overflow: hidden;
+    background-color: #000;
+    position: relative;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 86px;
+    /* border-bottom-width: 1px;
+    border-bottom-style: solid; */
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-color: white;
+}
+
+/* Estilos del contenido inicial */
+.footer-initial {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    width: 100%;
+    justify-content: space-between;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.footer-initial-text {
+    color: white;
+    font-size: 2.2rem;
+    letter-spacing: -.03em;
+}
+
+.footer-initial-icon {
+    margin-left: 20px;
+}
+
+/* Contenido animado */
+.footer-social-info {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    transform: translateX(0);
+    opacity: 0;
+    cursor: pointer;
+    /* transition: opacity 0.3s ease; */
+}
+
+/* Hover para ocultar contenido inicial y mostrar animado */
+.footer-social-container:hover .footer-initial {
+    opacity: 0;
+}
+
+.footer-social-container:hover .footer-social-info {
+    opacity: 1;
+    animation: scroll-left 13s linear infinite;
+}
+
+/* Animación de desplazamiento */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.footer-social-title {
+    color: white;
+    font-size: 2.2rem;
+    letter-spacing: -.03em;
+    margin-right: 90px;
+    align-self: center;
+    margin-bottom: 4px;
+}
+
+.footer-social-arr {
+    color: white;
+    font-size: 2.7rem;
+}
+
+.footer-social-content {
+    display: flex;
+    flex-direction: row;
+    margin-right: 90px;
+}
+
+.footer-social-container:hover {
+    background-color: white;
+}
+
+.footer-social-container:hover .footer-social-title,
+.footer-social-container:hover .footer-social-arr,
+.footer-social-container:hover .footer-initial-text,
+.footer-social-container:hover .footer-initial-icon svg {
+    color: black;
+}
+
+.footer-rights {
+    background-color: black;
+    color: white;
+    font-size: 0.9rem;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-color: white;
+}
 
 
 /* Cambiar disposición en dispositivos móviles */
