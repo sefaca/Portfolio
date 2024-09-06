@@ -25,7 +25,7 @@ function setLinkColors(colorLeft = '', colorRight = '') {
     document.getElementById('link-welcome').style.color = colorLeft; // Color para el enlace superior izquierdo
     document.getElementById('link-about').style.color = colorLeft; // Color para el enlace inferior izquierdo
     document.getElementById('link-works').style.color = colorRight || colorLeft; // Color para el enlace superior derecho
-    document.getElementById('link-example').style.color = colorRight || colorLeft; // Color para el enlace inferior derecho
+    document.getElementById('link-contact').style.color = colorRight || colorLeft; // Color para el enlace inferior derecho
 }
 
 // Escuchar el scroll para cambiar las clases
