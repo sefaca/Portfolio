@@ -2,6 +2,63 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins&display=swap" rel="stylesheet">
 
+<style>
+@font-face {
+    font-family: 'GlowNightItalic';
+    src: url('../assets/fonts/GLOW\ NIGHT\ ITALIC.otf') format('truetype'),
+         url('../assets/fonts/GLOW\ NIGHT\ ITALIC.ttf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'GlowNight';
+    src: url('../assets/fonts/GLOW\ NIGHT.otf') format('truetype'),
+         url('../assets/fonts/GLOW\ NIGHT.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roman';
+    src: url('../assets/fonts/Romanpridescriptdemo-mLe4a.otf') format('truetype'),
+         url('../assets/fonts/RomanprideserifRegular-d9mwE.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pearl';
+    src: url('../assets/fonts/tan-pearl.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mifelin';
+    src: url('../assets/fonts/Mifelin.ttf') format('truetype'),
+         url('../assets/fonts/tan-pearl.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Moonic';
+    src: url('../assets/fonts/moonic-italic.otf') format('truetype'),
+         url('../assets/fonts/moonic.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Qaiken';
+    src: url('../assets/fonts/qaiken.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+</style>
+
 /* Estilos globales */
 body, html {
     margin: 0;
@@ -92,7 +149,7 @@ body, html {
 
 /* Círculo a la derecha para los enlaces de la derecha */
 #link-works::before,
-#link-example::before {
+#link-contact::before {
     right: -12px;
     top: 46.5%;
     transform: translateY(-50%);
@@ -125,7 +182,7 @@ body, html {
     left: 50px;
 }
 
-#link-example {
+#link-contact {
     bottom: 40px;
     right: 50px;
 }
@@ -170,12 +227,14 @@ body, html {
     /* transform: translateY(-100%); Mantenerlo en su posición sin saltar */
 }
 .develop-text {
+    font-family: 'Playfair Display', sans-serif;
     font-size: 10vw;
     font-weight: bold;
     z-index: 2;
     transition: opacity 1.5s ease-in-out;
 }
 .overlay-text {
+    font-family: 'Playfair';
     position: absolute;
     top: 50%;
     left: 25%;
@@ -319,27 +378,6 @@ body, html {
     transform: translateY(0);
 }
 
-/* .my-work-section {
-    background-color: #1a191d;
-    color: #333;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
-}
-.my-work-section h1 {
-    color: #E6DFD8;
-    font-size: 100px;
-    font-family: 'Playfair';
-}
-
-.my-work-section video {
-    height: 500px;
-    display: block;
-    margin: 0 auto;
-} */
-
-
-
 .my-work-section {
     background-color: #252123;
     color: #E6DFD8;
@@ -352,7 +390,7 @@ body, html {
     font-size: 60px;
     margin-bottom: 0px;
     margin-top: 0px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'GlowNight';
 }
 
 .intro-text {
@@ -392,10 +430,11 @@ body, html {
 .description h2 {
     font-size: 36px;
     margin-bottom: 20px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'GlowNight', serif;
 }
 
 .description p {
+    font-family: 'GlowNight';
     font-size: 18px;
     line-height: 1.6;
 }
@@ -415,6 +454,7 @@ body, html {
     justify-content: space-around;
     color: #E6DFD8;
     font-weight: bold;
+    font-family: 'GlowNight', serif;
 }
 
 .option-menu {
@@ -476,9 +516,25 @@ body, html {
     flex-direction: column;
     align-items: flex-start;
     width: 55%;
+    height: 100%;
     margin-left: auto;
     text-align: justify;
     padding-right: 85px;
+    margin-top: 20px;
+}
+
+.project-preview-left h2 {
+    font-family: 'GlowNight';
+}
+
+.project-preview-left p {
+    margin-top: -3px;
+    font-family: 'GlowNight';
+}
+
+.project-preview-left button {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .cook-mate-preview-app-right {
@@ -509,9 +565,25 @@ body, html {
     flex-direction: column;
     align-items: flex-start;
     width: 55%;
+    height: 100%;
     margin-right: auto;
     text-align: justify;
     padding-left: 110px;
+    margin-top: 20px;
+}
+
+.project-preview-right h2 {
+    font-family: 'GlowNight';
+}
+
+.project-preview-right p {
+    margin-top: -3px;
+    font-family: 'GlowNight';
+}
+
+.project-preview-right button {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .image-container {
@@ -615,10 +687,27 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    height: 100%;
     width: 45%;
     margin-left: auto;
     text-align: justify;
     padding-right: 57px;
+    margin-top: 20px;
+}
+
+.website-project-preview-left h2 {
+    font-family: 'GlowNight';
+}
+
+.website-project-preview-left p {
+    margin-top: -3px;
+    font-family: 'GlowNight';
+
+}
+
+.website-project-preview-left button {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .website-preview-app-right {
@@ -649,9 +738,26 @@ body, html {
     flex-direction: column;
     align-items: flex-start;
     width: 43%;
+    height: 100%;
     margin-right: auto;
     text-align: justify;
     padding-left: 57px;
+    margin-top: 20px;
+}
+
+.website-project-preview-right h2 {
+    font-family: 'GlowNight';
+}
+
+.website-project-preview-right p {
+    margin-top: -3px;
+    font-family: 'GlowNight';
+
+}
+
+.website-project-preview-right button {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 /* Efecto hover */
@@ -670,6 +776,7 @@ body, html {
     padding: 50px 0;
     text-align: center;
     background-color: #f7f7ff;
+    font-family: 'GlowNight', serif;
 }
 
 .contact-container {
@@ -682,6 +789,7 @@ body, html {
     font-size: 3.7em;
     color: #5e2ced;
     margin-bottom: 10px;
+    font-family: 'Qaiken', serif;
 }
 
 .contact-container p {
@@ -691,6 +799,7 @@ body, html {
     width: 530px;
     margin: auto;
     margin-bottom: 80px;
+    font-family: 'GlowNight', serif;
 }
 
 .contact-form-group {
@@ -721,6 +830,7 @@ body, html {
     border-bottom: 1px solid #5e2ced;
     background: transparent;
     color: #5e2ced;
+    font-family: 'GlowNight', serif;
 }
 
 .contact-textarea-group {
@@ -739,7 +849,7 @@ body, html {
     width: 100%;
     padding: 10px;
     padding-left: 0;
-    font-size: 1.4em;
+    font-size: 1em;
     border: 0;
     border-bottom: 1px solid #5e2ced;
     background: transparent;
@@ -747,6 +857,7 @@ body, html {
     color: #5e2ced;
     height: 70px;
     resize: vertical;
+    font-family: 'GlowNight', serif;
 }
 
 .contact-submit-btn {
@@ -800,9 +911,11 @@ body, html {
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
+    font-family: 'Qaiken', sans-serif;
 }
 
 .footer-social-container {
+    font-family: 'GlowNight';
     overflow: hidden;
     background-color: #000;
     position: relative;
@@ -811,8 +924,6 @@ body, html {
     align-items: center;
     justify-content: space-between;
     padding: 0 86px;
-    /* border-bottom-width: 1px;
-    border-bottom-style: solid; */
     border-top-width: 1px;
     border-top-style: solid;
     border-color: white;

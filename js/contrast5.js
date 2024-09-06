@@ -11,7 +11,13 @@ function changeLinkColors() {
     var contactSection = document.querySelector('#contact');  // Selecciona la sección de contacto
     var contactSectionPosition = contactSection.offsetTop;
 
-    if (scrollPosition >= contactSectionPosition) {
+    var footerSection = document.querySelector('.footer-section');  // Selecciona la sección footer
+    var footerSectionPosition = footerSection.offsetTop;
+
+    if (scrollPosition >= footerSectionPosition) {
+        // Cambiar colores cuando se llega a la sección footer
+        setLinkColors('#FFFFFF');
+    } else if (scrollPosition >= contactSectionPosition) {
         // Cambiar colores cuando se llega a la sección de contacto
         setLinkColors('#5e2ced');
     } else if (scrollPosition >= workSectionPosition) {
