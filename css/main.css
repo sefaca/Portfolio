@@ -507,7 +507,6 @@ body, html {
 .cook-mate-preview-app-left img {
     height: 350px;
     border-radius: 10px;
-    position: absolute;
     top: -50px;
 }
 
@@ -519,6 +518,7 @@ body, html {
     height: 100%;
     margin-left: auto;
     text-align: justify;
+    justify-content: center;
     padding-right: 85px;
     margin-top: 20px;
 }
@@ -555,7 +555,6 @@ body, html {
     height: 350px;
     width: auto;
     border-radius: 10px;
-    position: absolute;
     top: -50px;
     right: 85px;
 }
@@ -568,6 +567,7 @@ body, html {
     height: 100%;
     margin-right: auto;
     text-align: justify;
+    justify-content: center;
     padding-left: 110px;
     margin-top: 20px;
 }
@@ -587,7 +587,6 @@ body, html {
 }
 
 .image-container {
-    overflow: hidden;
     display: inline-block;
 }
 
@@ -672,14 +671,13 @@ body, html {
     padding-left: 60px;
     position: relative;
     margin: 80px auto 160px auto;
-    height: 250px;
-    width: 80%;
+    height: 300px;
+    width: 85%;
 }
 
 .website-preview-app-left img {
     height: 320px;
     border-radius: 10px;
-    position: absolute;
     top: -40px;
 }
 
@@ -689,6 +687,7 @@ body, html {
     align-items: flex-start;
     height: 100%;
     width: 45%;
+    justify-content: center;
     margin-left: auto;
     text-align: justify;
     padding-right: 57px;
@@ -720,15 +719,14 @@ body, html {
     padding-right: 60px;
     position: relative;
     margin: 80px auto 160px auto;
-    height: 250px;
-    width: 80%;
+    height: 300px;
+    width: 85%;
 }
 
 .website-preview-app-right img {
     height: 283px;
     width: auto;
     border-radius: 10px;
-    position: absolute;
     top: -19px;
     right: 32px;
 }
@@ -741,6 +739,7 @@ body, html {
     height: 100%;
     margin-right: auto;
     text-align: justify;
+    justify-content: center;
     padding-left: 57px;
     margin-top: 20px;
 }
@@ -1036,6 +1035,29 @@ body, html {
 
 /* Cambiar disposición en dispositivos móviles */
 @media (max-width: 768px) {
+
+    #link-welcome, #link-about {
+        font-size: 13px;
+        left: 25px;
+    }
+
+    #link-works, #link-contact {
+        font-size: 13px;
+        right: 25px;
+    }
+
+    .my-work-section {
+        padding: 50px 30px;
+    }
+
+    .my-work-section h1 {
+        font-size: 30px;
+    }
+
+    .description h2 {
+        font-size: 30px;
+    }
+
     .work-row {
         flex-direction: column;
     }
@@ -1050,19 +1072,134 @@ body, html {
         padding: 20px 0;
     }
 
-    .cook-mate-preview-app-left img {
-        height: 150px;
-        border-radius: 10px;
-        position: absolute;
-        top: -50px;
+    .filter-menu {
+        width: auto;
+        font-size: 14px;
     }
 
-    .cook-mate-preview-app-right img {
-        height: 150px;
+    .cook-mate-preview-app-left img, .cook-mate-preview-app-right img {
+        height: 160px !important;
         border-radius: 10px;
-        position: absolute;
-        top: -50px;
-        right: 85px;
     }
+
+    .cook-mate-preview-app-left {
+        padding-left: 20px;
+        height: 145px !important;
+        width: auto;
+        margin: 14px auto 0px auto;
+    }
+
+    .cook-mate-preview-app-right {
+        padding-right: 20px;
+        height: 145px !important;
+        width: auto;
+        margin: 55px auto 60px auto;
+    }
+
+    .project-preview-left {
+        padding-right: 20px;
+        padding-left: 10px;
+        font-size: 8px;
+        width: auto;
+    }
+
+    .project-preview-right {
+        padding-left: 20px;
+        padding-right: 10px;
+        font-size: 8px;
+        width: auto;
+    }
+
+    .project-preview-left button, .project-preview-right button {
+        margin-top: 0;
+    }
+
+    .website-preview-app-left, .website-preview-app-right {
+        height: 150px !important;
+    }
+
+    .website-preview-app-right img, .website-preview-app-left img {
+        height: 100px !important;
+    }
+
+    .website-preview-app-left {
+        padding-left: 0px;
+        width: auto;
+    }
+
+    .website-preview-app-right {
+        padding-right: 0px;
+        width: auto;
+    }
+
+    .website-project-preview-left {
+        padding-right: 20px;
+        margin-left: 20px;
+    }
+
+    .website-project-preview-right {
+        padding-left: 20px;
+        margin-right: 20px;
+    }
+
+    .website-project-preview-left p, h2 {
+        font-size: 8px !important;
+    }
+
+    .website-project-preview-right p, h2 {
+        font-size: 8px !important;
+    }
+
+    .website-project-preview-left button {
+        margin-top: 0;
+    }
+
+    .website-project-preview-right button {
+        margin-top: 0;
+    }
+
+    
+    
 }
 
+@media (max-width: 1350px) {
+
+    .image-container {
+        overflow: unset;
+    }
+
+    .cook-mate-preview-app-left img, .cook-mate-preview-app-right img {
+        height: 250px;
+    }
+
+    .cook-mate-preview-app-left, .cook-mate-preview-app-right {
+        height: 210px;
+    }
+
+    .project-preview-left p h2, .project-preview-right p h2 {
+        font-size: 14px;
+    }
+
+
+
+    .website-preview-app-left, .website-preview-app-right {
+        height: 200px;
+    }
+
+    .website-project-preview-right p, h2 {
+        font-size: 13px;
+    }
+    .website-project-preview-left p, h2 {
+        font-size: 13px;
+    }
+    .website-project-preview-right .website-project-preview-left{
+        width: 37%;
+    }
+    .website-preview-app-right img, .website-preview-app-left img {
+        height: 250px;
+    }
+
+    .footer-initial-text {
+        font-size: 1.8rem;
+    }
+}
