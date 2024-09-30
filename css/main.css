@@ -349,6 +349,7 @@ body, html {
     text-align: justify;
     font-family: 'Bebas Neue';
 }
+
 .tech-icons {
     position: relative;
     top: -115px;
@@ -408,6 +409,24 @@ body, html {
     align-items: center;
     margin-bottom: 40px;
 }
+
+    /* Cambiar el orden de los elementos en dispositivos móviles */
+    .work-row:nth-child(1) .video-container {
+        order: 2; /* Video primero */
+    }
+    
+    .work-row:nth-child(1) .description {
+        order: 1; /* Párrafo segundo */
+    }
+
+    .work-row:nth-child(2) .video-container {
+        order: 4; /* Segundo video último */
+    }
+
+    .work-row:nth-child(2) .description {
+        order: 3; /* Segundo párrafo tercero */
+    }
+
 
 .video-container {
     flex: 1;
@@ -535,6 +554,7 @@ body, html {
 .project-preview-left button {
     margin-top: 10px;
     margin-bottom: 20px;
+    display: none;
 }
 
 .cook-mate-preview-app-right {
@@ -584,6 +604,7 @@ body, html {
 .project-preview-right button {
     margin-top: 10px;
     margin-bottom: 20px;
+    display: none;
 }
 
 .image-container {
@@ -707,6 +728,7 @@ body, html {
 .website-project-preview-left button {
     margin-top: 10px;
     margin-bottom: 20px;
+    display: none;
 }
 
 .website-preview-app-right {
@@ -757,6 +779,7 @@ body, html {
 .website-project-preview-right button {
     margin-top: 10px;
     margin-bottom: 20px;
+    display: none;
 }
 
 /* Efecto hover */
@@ -767,6 +790,7 @@ body, html {
 
 .project-preview button {
     width: 100px;
+    display: none;
 }
 
 /* Contact section */
@@ -1046,6 +1070,44 @@ body, html {
         right: 25px;
     }
 
+    .content-info-personal h2 {
+        margin-top: 570px;
+        font-size: 30px !important;
+    }
+
+    .text-content {
+        width: 75%;
+        margin-left: 0px !important;
+        height: 1023px;
+    }
+
+    .content-info-personal p {
+        font-size: 15px;
+    }
+
+    .half-section.left {
+        height: 1000px;
+    }
+
+    .content-info-personal img {
+        width: 55%;
+        position: absolute;
+        top: 291px;
+        left: 4.5rem;
+    }
+
+    .image-border {
+        left: 3.4rem;
+        top: 310px;
+        width: 58%;
+        height: 22%;
+    }
+
+    .tech-icons {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
     .my-work-section {
         padding: 50px 30px;
     }
@@ -1055,7 +1117,7 @@ body, html {
     }
 
     .description h2 {
-        font-size: 30px;
+        font-size: 20px !important;
     }
 
     .work-row {
@@ -1075,6 +1137,14 @@ body, html {
     .filter-menu {
         width: auto;
         font-size: 14px;
+    }
+
+    .image-side-ornament-left {
+        display: none;
+    }
+
+    .image-side-ornament-right {
+        display: none;
     }
 
     .cook-mate-preview-app-left img, .cook-mate-preview-app-right img {
@@ -1101,6 +1171,7 @@ body, html {
         padding-left: 10px;
         font-size: 8px;
         width: auto;
+        margin-top: 0px; /*Con button escondido*/
     }
 
     .project-preview-right {
@@ -1108,14 +1179,18 @@ body, html {
         padding-right: 10px;
         font-size: 8px;
         width: auto;
+        margin-top: 0px; /*Con button escondido*/
     }
 
     .project-preview-left button, .project-preview-right button {
         margin-top: 0;
+        display: none;
     }
 
     .website-preview-app-left, .website-preview-app-right {
         height: 150px !important;
+        margin-top: 70px;
+        margin-bottom: 0px;
     }
 
     .website-preview-app-right img, .website-preview-app-left img {
@@ -1135,11 +1210,13 @@ body, html {
     .website-project-preview-left {
         padding-right: 20px;
         margin-left: 20px;
+        margin-top: 0px; /*Con button escondido*/
     }
 
     .website-project-preview-right {
         padding-left: 20px;
         margin-right: 20px;
+        margin-top: 0px; /*Con button escondido*/
     }
 
     .website-project-preview-left p, h2 {
@@ -1152,13 +1229,62 @@ body, html {
 
     .website-project-preview-left button {
         margin-top: 0;
+        display: none;
     }
 
     .website-project-preview-right button {
         margin-top: 0;
+        display: none;
     }
 
+    .contact-container {
+        width: auto !important;
+    }
+
+    .contact-container h1 {
+        font-size: 2.1em;
+    }
+
+    .contact-container p { 
+        width: auto !important;
+        font-size: 1.2em;
+    }
+
+    .contact-form-group {
+        flex-direction: column;
+    }
+
+    .contact-input-group {
+        margin: 15px;
+    }
+
+    .contact-textarea-group {
+        width: 100%;
+        margin: 15px;
+    }
     
+    .contact-textarea-group textarea {
+        padding: 0px;
+        width: 90%;
+    }
+
+    .footer-initial-text {
+        font-size: 1.5rem !important;
+    }
+
+    .footer-social-title {
+        font-size: 1.5rem !important;
+    }
+
+    .tech-icons show-icons {
+        justify-content: space-around;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .tech-icons img {
+        max-width: 30px;
+    }
     
 }
 
