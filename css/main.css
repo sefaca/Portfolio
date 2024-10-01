@@ -1059,6 +1059,11 @@ body, html {
 
 /* Cambiar disposición en dispositivos móviles */
 @media (max-width: 768px) {
+    html, body {
+        margin: 0; /* Elimina márgenes */
+        padding: 0; /* Elimina padding */
+        overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    }
 
     #link-welcome, #link-about {
         font-size: 13px;
@@ -1070,8 +1075,87 @@ body, html {
         right: 25px;
     }
 
+    /* Contenedor principal */
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        overflow: hidden;
+        z-index: 1;
+        position: relative; /* Asegurar que los elementos hijos se posicionen correctamente */
+    }
+
+    /* Texto DEVELOP */
+    .develop-text {
+        font-family: 'Playfair Display', sans-serif;
+        font-size: 15vw;
+        font-weight: bold;
+        z-index: 2; /* Asegurar que esté encima del video */
+        opacity: 1; /* Asegurar que se vea siempre */
+        position: absolute;
+        top: 23%; /* Ajustar para que se posicione encima del video */
+        left: 50%;
+        transform: translateX(-50%); /* Centrar horizontalmente */
+        color: white; /* Asegurar que el color sea visible */
+    }
+
+    /* Texto superpuesto sobre el video */
+    .overlay-text {
+        font-family: 'Playfair';
+        position: absolute;
+        top: 62%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Centrar el texto */
+        color: white;
+        width: 80%;
+        text-align: center; /* Centrar el texto */
+        z-index: 3; /* Asegurar que esté encima del video */
+        font-size: 16px;
+    }
+
+    .overlay-text p {
+        font-size: larger;
+    }
+
+    .overlay-text h2 {
+        font-size: 22px !important;
+    }
+
+    /* Contenedor del video */
+    .vidzflow-embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1; /* Debajo del texto */
+        opacity: 1; /* Eliminar cualquier opacidad */
+        transform: none; /* Eliminar cualquier escala */
+        transition: none; /* Eliminar cualquier transición */
+    }
+
+    /* Iframe del video */
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        z-index: 1;
+    }
+
+    .zoom-in .develop-text {
+        opacity: 1; /* Asegura que el texto siempre sea visible en móviles */
+    }
+
+    .content-info-personal {
+        margin-top: calc(167vh);
+    }
+
     .content-info-personal h2 {
-        margin-top: 570px;
+        margin-top: 545px;
         font-size: 30px !important;
     }
 
@@ -1100,7 +1184,7 @@ body, html {
         left: 3.4rem;
         top: 310px;
         width: 58%;
-        height: 22%;
+        height: 21%;
     }
 
     .tech-icons {
