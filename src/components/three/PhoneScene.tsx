@@ -9,11 +9,14 @@ import {
 import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
+// Base path (GitHub Pages sirve bajo /Portfolio/)
+const BASE = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+
 const APPS = [
-  { src: "/assets/FoodSaver.webp", name: "FoodSaver" },
-  { src: "/assets/CookMate.webp", name: "CookMate" },
-  { src: "/assets/WeatherAI.webp", name: "WeatherAIApp" },
-  { src: "/assets/ExpenseTracker.webp", name: "ExpenseTracker" },
+  { src: `${BASE}assets/FoodSaver.webp`, name: "FoodSaver" },
+  { src: `${BASE}assets/CookMate.webp`, name: "CookMate" },
+  { src: `${BASE}assets/WeatherAI.webp`, name: "WeatherAIApp" },
+  { src: `${BASE}assets/ExpenseTracker.webp`, name: "ExpenseTracker" },
 ];
 
 interface PhoneProps {

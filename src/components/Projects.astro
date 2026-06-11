@@ -2,6 +2,9 @@
 // Nota: los enlaces apuntan al perfil de GitHub; sustituir por URLs por proyecto cuando existan.
 const GITHUB = "https://github.com/sefaca";
 
+// Base path (GitHub Pages sirve bajo /Portfolio/)
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+
 // Proyecto principal: startup en propiedad
 const featured = {
   title: "PadeLock",
@@ -16,14 +19,14 @@ const featured = {
 };
 
 const projects = [
-  { title: "FoodSaver", type: "Mobile", img: "/assets/FoodSaver.webp", desc: "OCR product scanning to fight food waste.", tags: ["React Native", "OCR"], link: GITHUB },
-  { title: "CookMate", type: "Mobile", img: "/assets/CookMate.webp", desc: "Recipes by calories & cuisine via Edamam.", tags: ["React Native", "API"], link: GITHUB },
-  { title: "WeatherAI", type: "Mobile", img: "/assets/WeatherAI.webp", desc: "AI outfit tips on real-time forecasts.", tags: ["React Native", "Cohere AI"], link: GITHUB },
-  { title: "ExpenseTracker", type: "Mobile", img: "/assets/ExpenseTracker.webp", desc: "Receipt OCR with automatic expense charts.", tags: ["React Native", "OCR"], link: GITHUB },
-  { title: "PadelMatch", type: "Web", img: "/assets/PadelMatch.webp", desc: "Padel match organiser & bookings (TFG).", tags: ["PHP", "MySQL"], link: GITHUB },
-  { title: "E-commerce", type: "Web", img: "/assets/820shots_so.webp", desc: "Marketplace with Firebase & Stripe.", tags: ["React", "Next.js"], link: GITHUB },
-  { title: "Restaurant", type: "Web", img: "/assets/RestaurantWeb.webp", desc: "Interactive responsive restaurant site.", tags: ["HTML", "CSS", "JS"], link: GITHUB },
-  { title: "BatataBit", type: "Web", img: "/assets/dfs.webp", desc: "Real-time crypto & currency tracking.", tags: ["HTML", "CSS", "JS"], link: GITHUB },
+  { title: "FoodSaver", type: "Mobile", img: "assets/FoodSaver.webp", desc: "OCR product scanning to fight food waste.", tags: ["React Native", "OCR"], link: GITHUB },
+  { title: "CookMate", type: "Mobile", img: "assets/CookMate.webp", desc: "Recipes by calories & cuisine via Edamam.", tags: ["React Native", "API"], link: GITHUB },
+  { title: "WeatherAI", type: "Mobile", img: "assets/WeatherAI.webp", desc: "AI outfit tips on real-time forecasts.", tags: ["React Native", "Cohere AI"], link: GITHUB },
+  { title: "ExpenseTracker", type: "Mobile", img: "assets/ExpenseTracker.webp", desc: "Receipt OCR with automatic expense charts.", tags: ["React Native", "OCR"], link: GITHUB },
+  { title: "PadelMatch", type: "Web", img: "assets/PadelMatch.webp", desc: "Padel match organiser & bookings (TFG).", tags: ["PHP", "MySQL"], link: GITHUB },
+  { title: "E-commerce", type: "Web", img: "assets/820shots_so.webp", desc: "Marketplace with Firebase & Stripe.", tags: ["React", "Next.js"], link: GITHUB },
+  { title: "Restaurant", type: "Web", img: "assets/RestaurantWeb.webp", desc: "Interactive responsive restaurant site.", tags: ["HTML", "CSS", "JS"], link: GITHUB },
+  { title: "BatataBit", type: "Web", img: "assets/dfs.webp", desc: "Real-time crypto & currency tracking.", tags: ["HTML", "CSS", "JS"], link: GITHUB },
 ];
 ---
 
@@ -85,7 +88,7 @@ const projects = [
               {String(i + 2).padStart(2, "0")}
             </span>
             <div class="g-card__media">
-              <img src={p.img} alt="" loading="lazy" decoding="async" />
+              <img src={base + p.img} alt="" loading="lazy" decoding="async" />
             </div>
             <div class="g-card__info">
               <h3 class="g-card__title">{p.title}</h3>

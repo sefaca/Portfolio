@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sergiofalcon.dev/sitemap-index.xml
+Sitemap: https://sefaca.github.io/Portfolio/sitemap-index.xml
