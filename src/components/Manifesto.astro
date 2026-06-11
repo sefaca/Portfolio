@@ -1,0 +1,56 @@
+<section class="manifesto section">
+  <p class="mono-label manifesto__index">(Manifesto)</p>
+  <p class="manifesto__text" id="manifesto-text">
+    I build digital products where engineering meets art direction — every
+    pixel intentional, every interaction earned, every detail worth the scroll.
+  </p>
+</section>
+
+<style>
+  .manifesto {
+    display: grid;
+    grid-template-columns: minmax(120px, 1fr) minmax(0, 3.2fr);
+    gap: 24px;
+    align-items: start;
+  }
+  .manifesto__index {
+    padding-top: 0.9em;
+  }
+  @media (max-width: 720px) {
+    .manifesto {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .manifesto__index { padding-top: 0; }
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const el = document.getElementById("manifesto-text");
+
+  if (el && !reduced) {
+    // Partimos el texto en palabras y las iluminamos en orden con el scroll
+    const words = (el.textContent || "").trim().split(/\s+/);
+    el.innerHTML = words
+      .map((w) => `<span class="m-word">${w}</span>`)
+      .join(" ");
+
+    gsap.to(el.querySelectorAll(".m-word"), {
+      opacity: 1,
+      stagger: 0.06,
+      ease: "none",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 78%",
+        end: "bottom 45%",
+        scrub: 0.4,
+      },
+    });
+  }
+</script>

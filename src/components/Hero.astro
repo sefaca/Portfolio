@@ -1,0 +1,199 @@
+---
+import AuroraScene from "./three/AuroraScene.tsx";
+---
+
+<section id="top" class="hero">
+  <!-- Aurora líquida full-screen (isla React, solo cliente) -->
+  <div class="hero__canvas" aria-hidden="true">
+    <AuroraScene client:only="react" />
+  </div>
+
+  <div class="hero__content">
+    <div class="hero__topline">
+      <span class="mono-label line-mask"><span>Folio — 2026</span></span>
+      <span class="mono-label line-mask hero__topline-right"><span>Co-founder & CTO @ PadeLock</span></span>
+    </div>
+
+    <h1 class="hero__title" aria-label="Sergio Falcón, creative developer">
+      <span class="line-mask" data-delay="1">
+        <span class="mega hero__row1">Sergio</span>
+      </span>
+      <span class="line-mask" data-delay="2">
+        <span class="mega outline-text hero__row2">Falcón</span>
+      </span>
+      <em class="serif-accent hero__accent" aria-hidden="true">creative</em>
+      <em class="serif-accent hero__accent hero__accent--2" aria-hidden="true">developer</em>
+    </h1>
+
+    <div class="hero__bottom">
+      <p class="hero__sub line-mask" data-delay="3">
+        <span>
+          Turning ideas into immersive mobile &amp; web products —
+          fast, bold and full of motion.
+        </span>
+      </p>
+      <div class="hero__actions line-mask" data-delay="4">
+        <span>
+          <a href="#projects" class="btn btn--solid magnetic">View work</a>
+          <a href="#contact" class="btn btn--ghost magnetic">Get in touch</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <a href="#work" class="hero__scroll mono-label" aria-label="Scroll to work">
+    (scroll)
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero__canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(60% 50% at 40% 45%, rgba(255, 255, 255, 0.06), transparent 70%);
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: clamp(96px, 14vh, 150px) clamp(20px, 5vw, 56px) clamp(80px, 12vh, 130px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 5vh, 56px);
+  }
+
+  .hero__topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .hero__title {
+    position: relative;
+  }
+  /* Hueco superior para la tilde de FALCÓN dentro de la máscara */
+  .hero__title .line-mask > span {
+    padding-top: 0.14em;
+    margin-bottom: -0.1em;
+  }
+  .hero__row1,
+  .hero__row2 {
+    display: block;
+    width: fit-content;
+  }
+  .hero__row2 {
+    margin-left: clamp(28px, 12vw, 220px);
+  }
+  /* Acentos serif flotantes (fuera de las máscaras para no recortarse) */
+  .hero__accent {
+    position: absolute;
+    z-index: 2;
+    font-size: clamp(1.6rem, 4.2vw, 4rem);
+    line-height: 1;
+    color: var(--color-fog);
+    transform: rotate(-6deg);
+    top: 0.1em;
+    left: clamp(220px, 38vw, 760px);
+    opacity: 0;
+    transition: opacity 0.9s ease 0.55s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s;
+  }
+  .hero__accent--2 {
+    top: auto;
+    bottom: -0.3em;
+    left: clamp(8px, 6vw, 120px);
+    color: var(--color-accent);
+    transform: rotate(4deg);
+    transition-delay: 0.7s, 0.7s;
+  }
+  html.is-loaded .hero__accent {
+    opacity: 1;
+  }
+  html:not(.js) .hero__accent {
+    opacity: 1;
+  }
+
+  .hero__bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .hero__sub {
+    max-width: 34ch;
+    color: var(--color-fog-dim);
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    line-height: 1.55;
+  }
+  .hero__actions span {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .hero__scroll {
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    transition: opacity 0.4s ease;
+    animation: scroll-pulse 2.2s ease-in-out infinite;
+  }
+  :global(html.scrolled) .hero__scroll {
+    opacity: 0;
+    pointer-events: none;
+  }
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 0.45; }
+    50% { opacity: 1; }
+  }
+
+  @media (max-width: 720px) {
+    .hero__row2 { margin-left: 10vw; }
+    .hero__accent { left: auto; right: 4vw; }
+    .hero__accent--2 { left: 2vw; right: auto; }
+  }
+
+  @media (max-height: 460px) and (orientation: landscape) {
+    .hero { min-height: auto; }
+    .hero__content { padding-block: 90px 60px; }
+    .hero__scroll { display: none; }
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduced) {
+    // El titular se desplaza y encoge sutilmente al hacer scroll (parallax)
+    gsap.to(".hero__title", {
+      yPercent: -22,
+      scale: 0.96,
+      opacity: 0.35,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 0.6,
+      },
+    });
+  }
+</script>

@@ -1,0 +1,135 @@
+---
+import LogoS from "./LogoS.astro";
+
+const socials = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/sergio-falc%C3%B3n-de-la-calle-083787195/",
+  },
+  { label: "GitHub", href: "https://github.com/sefaca" },
+  { label: "Instagram", href: "https://www.instagram.com/sefaca24" },
+];
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <a href="#contact" class="footer__giant" data-cursor="Say hi">
+    <span class="footer__giant-line mega">Let's work</span>
+    <span class="footer__giant-line mega footer__giant-outline">
+      together<em class="serif-accent footer__star" aria-hidden="true">✦</em>
+    </span>
+  </a>
+
+  <div class="footer__bottom">
+    <p class="mono-label footer__copy">
+      <LogoS size={20} class="footer__logo" />
+      © {year} Sergio Falcón De la Calle
+    </p>
+    <p class="mono-label" id="local-time">Seville, ES — --:--:--</p>
+    <nav class="footer__socials" aria-label="Social links">
+      {
+        socials.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener noreferrer" class="mono-label footer__social">
+            {s.label} ↗
+          </a>
+        ))
+      }
+    </nav>
+    <a href="#top" class="mono-label footer__top-link">Back to top ↑</a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: clamp(60px, 10vh, 120px) clamp(20px, 5vw, 56px) 32px;
+    background:
+      radial-gradient(90% 130% at 50% 110%, rgba(255, 255, 255, 0.05), transparent 60%);
+    overflow: hidden;
+  }
+
+  .footer__giant {
+    display: block;
+    text-align: center;
+    margin-bottom: clamp(50px, 10vh, 110px);
+  }
+  .footer__giant-line {
+    display: block;
+    transition: letter-spacing 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .footer__giant-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-fog);
+    transition: color 0.5s ease, letter-spacing 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .footer__giant:hover .footer__giant-line {
+    letter-spacing: 0.04em;
+  }
+  .footer__giant:hover .footer__giant-outline {
+    color: var(--color-accent);
+    -webkit-text-stroke-color: transparent;
+  }
+  .footer__star {
+    font-size: 0.4em;
+    vertical-align: super;
+    color: var(--color-accent);
+    margin-left: 0.1em;
+  }
+
+  .footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px 24px;
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+  }
+  .footer__copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .footer__copy :global(.footer__logo) {
+    color: var(--color-fog);
+    flex-shrink: 0;
+  }
+  .footer__socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .footer__social,
+  .footer__top-link {
+    transition: color 0.3s ease;
+  }
+  .footer__social:hover,
+  .footer__top-link:hover {
+    color: var(--color-fog);
+  }
+
+  @media (forced-colors: active) {
+    .footer__giant-outline {
+      -webkit-text-stroke: 0;
+      color: CanvasText;
+    }
+  }
+</style>
+
+<script>
+  // Reloj local en vivo (hora de España)
+  const el = document.getElementById("local-time");
+  if (el) {
+    const fmt = new Intl.DateTimeFormat("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZone: "Europe/Madrid",
+    });
+    const tick = () => {
+      el.textContent = `Seville, ES — ${fmt.format(new Date())}`;
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+</script>

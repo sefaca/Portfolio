@@ -1,0 +1,23 @@
+---
+interface Props {
+  items: string[];
+  reverse?: boolean;
+  rows?: 1 | 2;
+}
+const { items, reverse = false, rows = 1 } = Astro.props;
+// Duplicamos el contenido para el bucle infinito (translateX -50%)
+const content = [...items, ...items];
+---
+
+<div class="marquee" aria-hidden="true">
+  <div class:list={["marquee__row", { "marquee__row--reverse": reverse }]}>
+    {content.map((item) => <span>{item} —&nbsp;</span>)}
+  </div>
+  {
+    rows === 2 && (
+      <div class:list={["marquee__row", { "marquee__row--reverse": !reverse }]}>
+        {content.map((item) => <span>{item} —&nbsp;</span>)}
+      </div>
+    )
+  }
+</div>

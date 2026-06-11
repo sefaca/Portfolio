@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- S monograma: dos trazos simétricos (180°) con canal diagonal -->
+  <g stroke="#ffffff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 65 27 H 47 C 40 27 38 30 38 36 V 44 C 38 48 39 50.5 42 53 L 51.5 58.5"/>
+    <path d="M 65 27 H 47 C 40 27 38 30 38 36 V 44 C 38 48 39 50.5 42 53 L 51.5 58.5" transform="rotate(180 50 50)"/>
+  </g>
+</svg>
