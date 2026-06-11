@@ -1,0 +1,262 @@
+---
+// Experiencia real (LinkedIn, jun. 2026)
+const entries = [
+  {
+    role: "Co-Founder & CTO",
+    company: "PadeLock",
+    period: "Sep 2025 — Now",
+    place: "Seville, Spain",
+    current: true,
+    desc: "Leading the vision, strategy and technical development of the SaaS platform digitizing how padel clubs and academies operate. Responsible for product architecture and scalability, the full development lifecycle from design to deployment, and a user-centered experience — aligning technology with business growth alongside my co-founder.",
+    tags: ["SaaS", "Product architecture", "Leadership"],
+    link: "https://www.padelock.com/",
+  },
+  {
+    role: "CTO & Lead Flutter Developer",
+    company: "Kids and Clouds",
+    period: "Nov 2024 — Aug 2025",
+    place: "Seville · Espacio_RES accelerator",
+    current: false,
+    desc: "EdTech startup building cloud-powered solutions for families and schools. Led the architecture, development and deployment of a cross-platform Flutter + Firebase + AWS app used by 100+ educational centers. Acted as project manager (Jira, GitHub PR workflows, release cycles), led technical recruitment and mentoring, and drove a role-based UX/UI strategy informed by real user testing.",
+    tags: ["Flutter", "Firebase", "AWS", "UX strategy"],
+    link: null,
+  },
+  {
+    role: "React Native Developer — Internship",
+    company: "Z1 Digital Studio",
+    period: "Jan 2024 — May 2024",
+    place: "Seville, Spain",
+    current: false,
+    desc: "Built React Native features at Z1, the Seville-based digital product studio, working with Xcode and native mobile tooling alongside senior engineers.",
+    tags: ["React Native", "Xcode"],
+    link: null,
+  },
+  {
+    role: "3D Production Manager",
+    company: "Freelance",
+    period: "Sep 2018 — Mar 2020",
+    place: "Seville, Spain",
+    current: false,
+    desc: "Design and 3D modeling with CATIA and AutoCAD; print preparation and slicing with Ultimaker Cura and Slic3r, with an R&D-driven approach to production.",
+    tags: ["CATIA", "AutoCAD", "3D printing"],
+    link: null,
+  },
+  {
+    role: "Robot Operator — Internship",
+    company: "TRC Composite",
+    period: "Mar 2018 — Jul 2018",
+    place: "Seville, Spain",
+    current: false,
+    desc: "Tuned an ABB IRB6620 industrial robot; modeling and simulation with CATIA V5 and DELMIA V5.",
+    tags: ["ABB RobotStudio", "DELMIA", "CATIA V5"],
+    link: null,
+  },
+];
+
+const education = [
+  {
+    school: "IES Aguadulce",
+    degree: "Higher Technical Degree — Web Development & Webmastering",
+    period: "2021 — 2023",
+  },
+  {
+    school: "IES Camas",
+    degree: "Higher Technical Degree — Industrial Robotics & Automation",
+    period: "2016 — 2018",
+  },
+];
+---
+
+<section id="experience" class="experience section">
+  <div class="experience__head">
+    <p class="mono-label reveal">04 / Experience</p>
+    <h2 class="mega-sm reveal">
+      Where I've <em class="serif-accent">been</em>
+    </h2>
+  </div>
+
+  <div class="experience__list">
+    {
+      entries.map((e) => (
+        <article class="exp-row reveal">
+          <div class="exp-row__period">
+            <span class="mono-label" class:list={[{ "text-accent": e.current }]}>
+              {e.current ? "● " : ""}{e.period}
+            </span>
+            <span class="mono-label exp-row__place">{e.place}</span>
+          </div>
+          <div class="exp-row__main">
+            <h3 class="exp-row__role">{e.role}</h3>
+            {e.link ? (
+              <a href={e.link} target="_blank" rel="noopener noreferrer" class="exp-row__company">
+                {e.company} ↗
+              </a>
+            ) : (
+              <span class="exp-row__company">{e.company}</span>
+            )}
+            <p class="exp-row__desc">{e.desc}</p>
+            <div class="exp-row__tags">
+              {e.tags.map((t) => <span class="exp-tag">{t}</span>)}
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <!-- Recomendación real (Z1) -->
+  <blockquote class="exp-quote reveal">
+    <p class="exp-quote__text serif-accent">
+      “From day one, Sergio showed an enormous eagerness to learn and an
+      attitude towards work and challenges that any company would want on
+      their team.”
+    </p>
+    <footer class="mono-label">
+      — Jesús Chacón Montero · Senior Backend Developer, Z1
+    </footer>
+  </blockquote>
+
+  <div class="experience__edu reveal">
+    <p class="mono-label experience__edu-label">Education</p>
+    <div class="experience__edu-list">
+      {
+        education.map((ed) => (
+          <div class="edu-item">
+            <span class="edu-item__school">{ed.school}</span>
+            <span class="edu-item__degree">{ed.degree}</span>
+            <span class="mono-label">{ed.period}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience__head {
+    margin-bottom: clamp(36px, 6vh, 64px);
+    display: grid;
+    gap: 14px;
+  }
+
+  .experience__list {
+    display: grid;
+  }
+
+  .exp-row {
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) minmax(0, 3.2fr);
+    gap: 24px;
+    padding: clamp(24px, 4vh, 40px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .exp-row:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .exp-row__period {
+    padding-top: 6px;
+    display: grid;
+    gap: 6px;
+    align-content: start;
+  }
+  .exp-row__place {
+    color: var(--color-fog-faint);
+    text-transform: none;
+    letter-spacing: 0.04em;
+  }
+
+  .exp-row__role {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+  .exp-row__company {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-fog-dim);
+    transition: color 0.3s ease;
+  }
+  a.exp-row__company:hover {
+    color: var(--color-accent);
+  }
+  .exp-row__desc {
+    margin-top: 12px;
+    color: var(--color-fog-dim);
+    font-size: 0.96rem;
+    line-height: 1.65;
+    max-width: 62ch;
+  }
+  .exp-row__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .exp-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-fog-dim);
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+  }
+
+  /* Recomendación */
+  .exp-quote {
+    margin: clamp(48px, 8vh, 80px) auto 0;
+    max-width: 760px;
+    text-align: center;
+    display: grid;
+    gap: 18px;
+  }
+  .exp-quote__text {
+    font-size: clamp(1.3rem, 2.6vw, 2rem);
+    line-height: 1.35;
+    color: var(--color-fog);
+  }
+
+  /* Educación */
+  .experience__edu {
+    margin-top: clamp(48px, 8vh, 80px);
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) minmax(0, 3.2fr);
+    gap: 24px;
+  }
+  .experience__edu-label {
+    padding-top: 4px;
+  }
+  .experience__edu-list {
+    display: grid;
+    gap: 18px;
+  }
+  .edu-item {
+    display: grid;
+    gap: 3px;
+  }
+  .edu-item__school {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+  .edu-item__degree {
+    color: var(--color-fog-dim);
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 720px) {
+    .exp-row,
+    .experience__edu {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+</style>

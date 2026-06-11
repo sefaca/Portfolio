@@ -1,0 +1,138 @@
+---
+// Stack real (LinkedIn, jun. 2026)
+const stack = [
+  "Flutter",
+  "React Native",
+  "Firebase",
+  "AWS",
+  "TypeScript",
+  "JavaScript",
+  "SaaS Product",
+  "UX/UI",
+  "Jira",
+  "GitHub",
+  "MySQL",
+  "PHP",
+  "Xcode",
+  "Android Studio",
+];
+---
+
+<section id="about" class="about section">
+  <div class="about__grid">
+    <div class="about__photo reveal">
+      <div class="about__frame glass border-iris">
+        <img
+          src="/assets/Photo-personal.webp"
+          alt="Sergio Falcón De la Calle"
+          width="900"
+          height="900"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <div class="about__content">
+      <p class="mono-label reveal">03 / About me</p>
+      <h2 class="mega-sm reveal about__title">
+        Ideas into things<br />
+        <em class="serif-accent">people use</em>
+      </h2>
+      <p class="about__bio reveal">
+        I'm <strong>Sergio Falcón</strong>,
+        <strong>co-founder &amp; CTO of PadeLock</strong> — the platform
+        digitizing padel academies across Spain. Based in Seville, I lead
+        product architecture and build mobile &amp; web products end-to-end
+        with Flutter, React Native, Firebase and AWS.
+      </p>
+      <p class="about__bio reveal">
+        My goal is simple: keep learning, keep shipping, and bring new ideas to
+        life through clean, performant code.
+      </p>
+
+      <div class="about__stack reveal">
+        {stack.map((t) => <div class="chip glass glass-hover">{t}</div>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: center;
+  }
+
+  .about__photo {
+    perspective: 1000px;
+  }
+  .about__frame {
+    padding: 10px;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+  }
+  .about__frame:hover {
+    transform: rotateY(-6deg) rotateX(3deg);
+  }
+  .about__frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    filter: grayscale(60%);
+    transition: filter 0.6s ease;
+  }
+  .about__frame:hover img {
+    filter: grayscale(0%);
+  }
+
+  .about__title {
+    margin: 14px 0 24px;
+  }
+  .about__bio {
+    color: var(--color-fog-dim);
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
+    line-height: 1.7;
+    max-width: 56ch;
+    margin-bottom: 18px;
+  }
+  .about__bio strong {
+    color: var(--color-fog);
+    font-weight: 600;
+  }
+
+  .about__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 15px;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-fog-dim);
+  }
+  @media (max-width: 860px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .about__photo {
+      max-width: 360px;
+    }
+  }
+</style>

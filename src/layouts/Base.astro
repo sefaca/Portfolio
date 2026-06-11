@@ -1,0 +1,225 @@
+---
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Sergio Falcón — Co-Founder & CTO @ PadeLock",
+  description = "Portfolio of Sergio Falcón De la Calle — co-founder & CTO of PadeLock and lead mobile developer (Flutter, React Native, Firebase, AWS) crafting immersive digital products from Seville, Spain.",
+} = Astro.props;
+
+// TODO: actualizar el dominio real en astro.config.mjs (site) antes de desplegar
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL("/og.png", Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Sergio Falcón" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={description} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Tipografía: Anton (XXL) + Instrument Serif (acento) + JetBrains Mono (labels) + Inter (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:opsz,wght@14..32,400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Marca JS + salvaguarda: si algo falla, el contenido se muestra igualmente -->
+    <script is:inline>
+      document.documentElement.classList.add("js");
+      window.setTimeout(function () {
+        document.documentElement.classList.add("is-loaded");
+        if (!document.documentElement.classList.contains("reveal-ready")) {
+          document.querySelectorAll(".reveal").forEach(function (el) {
+            el.classList.add("is-visible");
+          });
+        }
+      }, 4000);
+    </script>
+  </head>
+
+  <body class="grain">
+    <!-- Preloader con contador -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <span class="preloader__label">Sergio Falcón — Folio 2026</span>
+      <span class="preloader__count" id="preloader-count">0</span>
+    </div>
+
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Nav />
+    <slot />
+
+    <!-- Cursor custom -->
+    <div class="cursor" id="cursor" aria-hidden="true">
+      <span class="cursor__label" id="cursor-label"></span>
+    </div>
+
+    <script>
+      import gsap from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+      import Lenis from "lenis";
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      /* ---------- Preloader: contador 0 → 100 ---------- */
+      const countEl = document.getElementById("preloader-count");
+      const finishLoad = () => document.documentElement.classList.add("is-loaded");
+      if (prefersReduced || !countEl) {
+        finishLoad();
+      } else {
+        const t0 = performance.now();
+        const DUR = 1400;
+        const tick = (now: number) => {
+          const p = Math.min((now - t0) / DUR, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          countEl.textContent = String(Math.round(eased * 100));
+          if (p < 1) requestAnimationFrame(tick);
+          else setTimeout(finishLoad, 150);
+        };
+        requestAnimationFrame(tick);
+      }
+
+      /* ---------- Foco accesible al navegar por anclas ---------- */
+      const focusTarget = (el: Element) => {
+        const node = el as HTMLElement;
+        if (!node.hasAttribute("tabindex")) node.setAttribute("tabindex", "-1");
+        node.focus({ preventScroll: true });
+      };
+
+      /* ---------- Lenis + GSAP ScrollTrigger ---------- */
+      try {
+        if (!prefersReduced) {
+          const lenis = new Lenis({
+            duration: 1.1,
+            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+          });
+          (window as any).__lenis = lenis;
+
+          lenis.on("scroll", ScrollTrigger.update);
+          gsap.ticker.add((time) => lenis.raf(time * 1000));
+          gsap.ticker.lagSmoothing(0);
+
+          document.querySelectorAll('a[href^="#"]').forEach((a) => {
+            a.addEventListener("click", (e) => {
+              const id = a.getAttribute("href");
+              if (!id || id === "#") return;
+              const target = document.querySelector(id);
+              if (target) {
+                e.preventDefault();
+                lenis.scrollTo(target as HTMLElement, {
+                  offset: -80,
+                  onComplete: () => focusTarget(target),
+                });
+              }
+            });
+          });
+        }
+      } catch (err) {
+        console.error("Lenis init failed:", err);
+      }
+
+      /* ---------- Aparición progresiva ---------- */
+      document.documentElement.classList.add("reveal-ready");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      /* ---------- Cursor custom ---------- */
+      const finePointer = window.matchMedia("(pointer: fine)").matches;
+      const cursor = document.getElementById("cursor");
+      const cursorLabel = document.getElementById("cursor-label");
+      if (finePointer && !prefersReduced && cursor && cursorLabel) {
+        document.documentElement.classList.add("has-cursor");
+        const pos = { x: innerWidth / 2, y: innerHeight / 2 };
+        const target = { x: pos.x, y: pos.y };
+        addEventListener("pointermove", (e) => {
+          target.x = e.clientX;
+          target.y = e.clientY;
+        }, { passive: true });
+        gsap.ticker.add(() => {
+          pos.x += (target.x - pos.x) * 0.18;
+          pos.y += (target.y - pos.y) * 0.18;
+          cursor.style.transform = `translate(${pos.x}px, ${pos.y}px) translate(-50%, -50%)`;
+        });
+
+        const bindHover = () => {
+          document.querySelectorAll<HTMLElement>("a, button, [data-cursor]").forEach((el) => {
+            if ((el as any).__cursorBound) return;
+            (el as any).__cursorBound = true;
+            el.addEventListener("mouseenter", () => {
+              const label = el.dataset.cursor;
+              if (label) {
+                cursorLabel.textContent = label;
+                cursor.classList.add("is-label");
+              } else {
+                cursor.classList.add("is-hover");
+              }
+            });
+            el.addEventListener("mouseleave", () => {
+              cursor.classList.remove("is-hover", "is-label");
+              cursorLabel.textContent = "";
+            });
+          });
+        };
+        bindHover();
+
+        /* ---------- Botones magnéticos ---------- */
+        document.querySelectorAll<HTMLElement>(".magnetic").forEach((el) => {
+          const strength = 0.35;
+          el.addEventListener("pointermove", (e) => {
+            const r = el.getBoundingClientRect();
+            const x = e.clientX - (r.left + r.width / 2);
+            const y = e.clientY - (r.top + r.height / 2);
+            gsap.to(el, { x: x * strength, y: y * strength, duration: 0.4, ease: "power3.out" });
+          });
+          el.addEventListener("pointerleave", () => {
+            gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.4)" });
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

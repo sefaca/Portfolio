@@ -1,0 +1,196 @@
+<section id="contact" class="contact section">
+  <div class="contact__inner">
+    <div class="contact__intro">
+      <p class="mono-label reveal">05 / Contact</p>
+      <h2 class="mega-sm reveal contact__title">
+        Let's build<br />
+        <em class="serif-accent">something great</em>
+      </h2>
+      <p class="contact__lead reveal">
+        Got a question, a proposal, or just want to say hello? Drop me a
+        message — I'll get back to you.
+      </p>
+    </div>
+
+    <form id="contact-form" class="contact__form glass reveal" novalidate>
+      <div class="contact__row">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Doe" required aria-required="true" />
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="jane@email.com" required aria-required="true" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="message">Your message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Tell me about your idea…" required aria-required="true"></textarea>
+      </div>
+      <button type="submit" class="contact__submit" id="contact-submit">Send message</button>
+      <p class="contact__status" id="contact-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact__inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  .contact__title {
+    margin: 12px 0 20px;
+  }
+  .contact__lead {
+    color: var(--color-fog-dim);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    max-width: 40ch;
+  }
+
+  .contact__form {
+    padding: clamp(24px, 4vw, 40px);
+    display: grid;
+    gap: 20px;
+  }
+  .contact__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .field {
+    display: grid;
+    gap: 8px;
+  }
+  .field label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-fog-dim);
+  }
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 12px 2px;
+    border: 0;
+    border-bottom: 1px solid var(--line-strong);
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-fog);
+    font: inherit;
+    font-size: 1.05rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+    resize: vertical;
+  }
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: var(--color-fog-faint);
+  }
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--color-accent);
+  }
+
+  .contact__submit {
+    justify-self: start;
+    border: 0;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    padding: 15px 36px;
+    border-radius: 999px;
+    background: var(--color-fog);
+    transition: background 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  }
+  .contact__submit:hover {
+    background: var(--color-accent);
+    transform: translateY(-2px);
+  }
+  .contact__submit:disabled {
+    opacity: 0.55;
+    cursor: wait;
+    transform: none;
+  }
+
+  .contact__status {
+    font-size: 0.9rem;
+    min-height: 1.2em;
+    margin: 0;
+  }
+  .contact__status.is-ok {
+    color: var(--color-fog);
+  }
+  .contact__status.is-err {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 820px) {
+    .contact__inner {
+      grid-template-columns: 1fr;
+    }
+    .contact__row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  import emailjs from "@emailjs/browser";
+
+  const PUBLIC_KEY = "1WXyGG1a5oeG6MjSz";
+  const SERVICE_ID = "service_is3l1lz";
+  const TEMPLATE_ID = "template_bh745es";
+
+  emailjs.init({ publicKey: PUBLIC_KEY });
+
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const btn = document.getElementById("contact-submit") as HTMLButtonElement | null;
+  const status = document.getElementById("contact-status");
+
+  if (form && btn && status) {
+    const fields = form.querySelectorAll<HTMLElement>("input, textarea");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      fields.forEach((f) => f.removeAttribute("aria-invalid"));
+
+      const invalid = form.querySelector<HTMLElement>(":invalid");
+      if (invalid) {
+        form.reportValidity();
+        invalid.setAttribute("aria-invalid", "true");
+        status.className = "contact__status is-err";
+        status.textContent = "Please complete the required fields.";
+        invalid.focus();
+        return;
+      }
+      btn.disabled = true;
+      status.className = "contact__status";
+      status.textContent = "Sending…";
+      try {
+        await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form, {
+          publicKey: PUBLIC_KEY,
+        });
+        status.className = "contact__status is-ok";
+        status.textContent = "Thanks! Your message is on its way. ✦";
+        form.reset();
+      } catch (err) {
+        status.className = "contact__status is-err";
+        status.textContent =
+          "Something went wrong. Please try again or email me directly.";
+        console.error("EmailJS error:", err);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+</script>

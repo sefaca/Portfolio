@@ -1,0 +1,30 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Manifesto from "../components/Manifesto.astro";
+import Marquee from "../components/Marquee.astro";
+import Showcase from "../components/Showcase.astro";
+import Projects from "../components/Projects.astro";
+import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Base>
+  <main id="main" tabindex="-1">
+    <Hero />
+    <Marquee
+      items={["Flutter", "React Native", "Firebase", "AWS", "Three.js", "UI Motion"]}
+      rows={2}
+    />
+    <Manifesto />
+    <Showcase />
+    <Projects />
+    <Marquee items={["Available for freelance", "Open to work", "Let's talk"]} reverse />
+    <About />
+    <Experience />
+    <Contact />
+  </main>
+  <Footer />
+</Base>

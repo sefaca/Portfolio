@@ -1,0 +1,86 @@
+---
+import PhoneScene from "./three/PhoneScene.tsx";
+---
+
+<section id="work" class="showcase section">
+  <div class="showcase__grid">
+    <div class="showcase__text">
+      <p class="mono-label reveal">01 / Mobile lab</p>
+      <h2 class="mega-sm reveal">
+        Apps built with<br />
+        <em class="serif-accent">React Native</em>
+      </h2>
+      <p class="showcase__lead reveal">
+        From food-waste tracking to AI-powered weather, each app is a real
+        product — designed, built and shipped end-to-end. Here are a few running
+        live.
+      </p>
+      <ul class="showcase__list reveal">
+        <li><strong>FoodSaver</strong> — scan products & track expiry dates with OCR.</li>
+        <li><strong>CookMate</strong> — recipe search by calories & cuisine (Edamam API).</li>
+        <li><strong>WeatherAIApp</strong> — real-time forecast + outfit tips with Cohere AI.</li>
+        <li><strong>ExpenseTracker</strong> — receipt OCR with automatic expense charts.</li>
+      </ul>
+    </div>
+
+    <div class="showcase__stage reveal">
+      <PhoneScene client:only="react" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .showcase__grid {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: clamp(32px, 5vw, 70px);
+    align-items: center;
+  }
+
+  .showcase__text h2 {
+    margin: 14px 0 22px;
+  }
+  .showcase__lead {
+    color: var(--color-fog-dim);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    line-height: 1.65;
+    max-width: 48ch;
+    margin-bottom: 26px;
+  }
+  .showcase__list {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+  }
+  .showcase__list li {
+    position: relative;
+    padding-left: 20px;
+    color: var(--color-fog-dim);
+    font-size: 0.96rem;
+  }
+  .showcase__list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+  .showcase__list strong {
+    color: var(--color-fog);
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    .showcase__grid {
+      grid-template-columns: 1fr;
+    }
+    .showcase__stage {
+      order: -1;
+    }
+  }
+</style>

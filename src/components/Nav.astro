@@ -1,0 +1,256 @@
+---
+import LogoS from "./LogoS.astro";
+
+const links = [
+  { label: "Work", href: "#work" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<header id="site-nav" class="nav">
+  <a href="#top" class="nav__brand" aria-label="Home">
+    <LogoS size={26} class="nav__mark" />
+    <span class="nav__name">Sergio Falcón</span>
+  </a>
+
+  <nav class="nav__links" aria-label="Primary">
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+  </nav>
+
+  <a href="#contact" class="nav__cta glass glass-hover">Let's talk</a>
+
+  <button
+    id="nav-toggle"
+    class="nav__toggle"
+    aria-label="Open menu"
+    aria-expanded="false"
+    aria-controls="nav-mobile"
+  >
+    <span></span><span></span>
+  </button>
+</header>
+
+<div id="nav-mobile" class="nav__mobile" aria-hidden="true" inert>
+  {links.map((l) => <a href={l.href} class="nav__mobile-link">{l.label}</a>)}
+  <a href="#contact" class="nav__mobile-cta">Let's talk</a>
+</div>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px clamp(20px, 5vw, 56px);
+    transition: backdrop-filter 0.4s ease, background 0.4s ease, border-color 0.4s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.is-scrolled {
+    background: rgba(8, 8, 12, 0.55);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom-color: var(--line);
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .nav.is-scrolled {
+      background: rgba(8, 8, 12, 0.92);
+    }
+  }
+
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav__brand :global(.nav__mark) {
+    color: var(--color-fog);
+    transition: color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav__brand:hover :global(.nav__mark) {
+    color: var(--color-accent);
+    transform: rotate(180deg);
+  }
+  .nav__name {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-fog);
+  }
+
+  .nav__links {
+    display: flex;
+    gap: 34px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .nav__links a {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-fog-dim);
+    transition: color 0.3s ease;
+  }
+  .nav__links a:hover {
+    color: var(--color-fog);
+  }
+
+  .nav__cta {
+    padding: 9px 18px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 999px;
+  }
+
+  /* Botón hamburguesa (solo móvil) */
+  .nav__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--glass-fill);
+    cursor: pointer;
+  }
+  .nav__toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    margin: 0 auto;
+    background: var(--color-fog);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .nav.is-open .nav__toggle span:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+  .nav.is-open .nav__toggle span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  /* Panel móvil */
+  .nav__mobile {
+    position: fixed;
+    top: 80px;
+    left: clamp(12px, 4vw, 20px);
+    right: clamp(12px, 4vw, 20px);
+    z-index: 39;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(12, 12, 18, 0.92);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .nav__mobile.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .nav__mobile-link {
+    padding: 13px 14px;
+    border-radius: 10px;
+    color: var(--color-fog);
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  .nav__mobile-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .nav__mobile-cta {
+    margin-top: 6px;
+    padding: 13px 14px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    color: #0a0a0f;
+    background: var(--color-fog);
+  }
+
+  @media (max-width: 760px) {
+    .nav__name,
+    .nav__links,
+    .nav__cta {
+      display: none;
+    }
+    .nav__toggle {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  const nav = document.getElementById("site-nav");
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("nav-mobile");
+
+  const onScroll = () => {
+    nav?.classList.toggle("is-scrolled", window.scrollY > 24);
+    document.documentElement.classList.toggle("scrolled", window.scrollY > 40);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  const lockScroll = (lock: boolean) => {
+    const l = (window as any).__lenis;
+    if (l) {
+      lock ? l.stop() : l.start();
+    } else {
+      document.body.style.overflow = lock ? "hidden" : "";
+    }
+  };
+
+  const setMenu = (open: boolean) => {
+    nav?.classList.toggle("is-open", open);
+    menu?.classList.toggle("is-open", open);
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    menu?.setAttribute("aria-hidden", String(!open));
+    if (menu) {
+      if (open) menu.removeAttribute("inert");
+      else menu.setAttribute("inert", "");
+    }
+    lockScroll(open);
+    if (open) {
+      (menu?.querySelector("a") as HTMLElement | null)?.focus();
+    } else {
+      toggle?.focus();
+    }
+  };
+
+  toggle?.addEventListener("click", () => {
+    setMenu(!menu?.classList.contains("is-open"));
+  });
+  menu?.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => setMenu(false))
+  );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu?.classList.contains("is-open")) setMenu(false);
+  });
+
+  // Cerrar el menú al volver a escritorio
+  const mqDesktop = window.matchMedia("(min-width: 761px)");
+  mqDesktop.addEventListener("change", (e) => {
+    if (e.matches && menu?.classList.contains("is-open")) setMenu(false);
+  });
+</script>

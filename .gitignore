@@ -1,0 +1,21 @@
+# dependencias
+node_modules/
+
+# build / cache de Astro
+dist/
+.astro/
+
+# config local con workaround de TLS (no debe versionarse)
+.npmrc
+
+# entornos y logs
+.env
+.env.*
+npm-debug.log*
+*.log
+
+# sistema operativo / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

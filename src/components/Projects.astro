@@ -1,0 +1,321 @@
+---
+// Nota: los enlaces apuntan al perfil de GitHub; sustituir por URLs por proyecto cuando existan.
+const GITHUB = "https://github.com/sefaca";
+
+// Proyecto principal: startup en propiedad
+const featured = {
+  title: "PadeLock",
+  tagline: "Digitaliza tu academia de pádel",
+  desc: "SaaS platform that runs padel academies end-to-end — scheduling, attendance, payments and automated WhatsApp comms.",
+  stats: [
+    ["30+", "Active academies"],
+    ["CTO", "& co-founder"],
+    ["Seville", "Spain"],
+  ],
+  link: "https://www.padelock.com/",
+};
+
+const projects = [
+  { title: "FoodSaver", type: "Mobile", img: "/assets/FoodSaver.webp", desc: "OCR product scanning to fight food waste.", tags: ["React Native", "OCR"], link: GITHUB },
+  { title: "CookMate", type: "Mobile", img: "/assets/CookMate.webp", desc: "Recipes by calories & cuisine via Edamam.", tags: ["React Native", "API"], link: GITHUB },
+  { title: "WeatherAI", type: "Mobile", img: "/assets/WeatherAI.webp", desc: "AI outfit tips on real-time forecasts.", tags: ["React Native", "Cohere AI"], link: GITHUB },
+  { title: "ExpenseTracker", type: "Mobile", img: "/assets/ExpenseTracker.webp", desc: "Receipt OCR with automatic expense charts.", tags: ["React Native", "OCR"], link: GITHUB },
+  { title: "PadelMatch", type: "Web", img: "/assets/PadelMatch.webp", desc: "Padel match organiser & bookings (TFG).", tags: ["PHP", "MySQL"], link: GITHUB },
+  { title: "E-commerce", type: "Web", img: "/assets/820shots_so.webp", desc: "Marketplace with Firebase & Stripe.", tags: ["React", "Next.js"], link: GITHUB },
+  { title: "Restaurant", type: "Web", img: "/assets/RestaurantWeb.webp", desc: "Interactive responsive restaurant site.", tags: ["HTML", "CSS", "JS"], link: GITHUB },
+  { title: "BatataBit", type: "Web", img: "/assets/dfs.webp", desc: "Real-time crypto & currency tracking.", tags: ["HTML", "CSS", "JS"], link: GITHUB },
+];
+---
+
+<section id="projects" class="gallery">
+  <div class="gallery__head">
+    <p class="mono-label reveal">02 / Selected work</p>
+    <h2 class="mega-sm reveal">
+      Things I've <em class="serif-accent">shipped</em>
+    </h2>
+    <p class="mono-label gallery__hint reveal" aria-hidden="true">( scroll → )</p>
+  </div>
+
+  <div class="gallery__viewport">
+    <div class="gallery__track" id="gallery-track">
+      <a
+        class="g-card g-card--featured"
+        href={featured.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cursor="Visit"
+        aria-label={`${featured.title} — ${featured.desc} (opens padelock.com)`}
+      >
+        <span class="g-card__num g-card__num--accent" aria-hidden="true">01</span>
+        <div class="g-card__media g-card__media--type">
+          <p class="mono-label g-feat__badge">★ Featured — My startup</p>
+          <span class="g-feat__name">Pade<br />Lock</span>
+          <p class="serif-accent g-feat__tagline">{featured.tagline}</p>
+          <div class="g-feat__stats">
+            {
+              featured.stats.map(([big, small]) => (
+                <div class="g-feat__stat">
+                  <span class="g-feat__stat-big">{big}</span>
+                  <span class="mono-label">{small}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+        <div class="g-card__info">
+          <h3 class="g-card__title">{featured.title}</h3>
+          <p class="g-card__desc">{featured.desc}</p>
+          <div class="g-card__meta">
+            <span class="mono-label text-accent">Founder & CTO</span>
+            <span class="mono-label g-card__tags">SaaS · padelock.com</span>
+          </div>
+        </div>
+      </a>
+      {
+        projects.map((p, i) => (
+          <a
+            class="g-card"
+            href={p.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cursor="View"
+            aria-label={`${p.title} — ${p.desc} (opens GitHub)`}
+          >
+            <span class="g-card__num" aria-hidden="true">
+              {String(i + 2).padStart(2, "0")}
+            </span>
+            <div class="g-card__media">
+              <img src={p.img} alt="" loading="lazy" decoding="async" />
+            </div>
+            <div class="g-card__info">
+              <h3 class="g-card__title">{p.title}</h3>
+              <p class="g-card__desc">{p.desc}</p>
+              <div class="g-card__meta">
+                <span class="mono-label">{p.type}</span>
+                <span class="mono-label g-card__tags">{p.tags.join(" · ")}</span>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery {
+    position: relative;
+    border-top: 1px solid var(--line);
+    padding-top: clamp(80px, 12vh, 150px);
+    overflow: hidden;
+  }
+  .gallery__head {
+    padding: 0 clamp(20px, 5vw, 56px);
+    margin-bottom: clamp(36px, 6vh, 64px);
+    display: grid;
+    gap: 14px;
+  }
+  .gallery__hint { color: var(--color-fog-faint); }
+
+  .gallery__viewport {
+    padding-bottom: clamp(80px, 12vh, 150px);
+  }
+
+  /* Por defecto (móvil / sin JS): carrusel nativo con scroll-snap */
+  .gallery__track {
+    display: flex;
+    gap: clamp(18px, 3vw, 44px);
+    padding: 0 clamp(20px, 5vw, 56px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .gallery__track::-webkit-scrollbar { display: none; }
+  /* Cuando GSAP pinea (escritorio), el track deja de ser scrollable */
+  .gallery__track.is-pinned {
+    overflow: visible;
+    width: max-content;
+  }
+
+  .g-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: min(78vw, 460px);
+    scroll-snap-align: center;
+    display: block;
+  }
+
+  .g-card__num {
+    position: absolute;
+    top: -0.55em;
+    left: -0.08em;
+    z-index: 2;
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 9vw, 8rem);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.35);
+    transition: -webkit-text-stroke 0.4s ease, color 0.4s ease;
+    pointer-events: none;
+  }
+  .g-card:hover .g-card__num {
+    color: var(--color-accent);
+    -webkit-text-stroke: 0px transparent;
+  }
+
+  .g-card__media {
+    position: relative;
+    height: clamp(320px, 52vh, 480px);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 35%, #181826, #0a0a10);
+    display: grid;
+    place-items: center;
+  }
+  .g-card__media img {
+    max-width: 86%;
+    max-height: 86%;
+    object-fit: contain;
+    filter: grayscale(35%) contrast(1.02);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  }
+  .g-card:hover .g-card__media img {
+    transform: scale(1.06) rotate(-1deg);
+    filter: grayscale(0%);
+  }
+
+  /* Tarjeta destacada (PadeLock): tipográfica, más ancha */
+  .g-card--featured {
+    width: min(86vw, 560px);
+  }
+  .g-card__num--accent {
+    -webkit-text-stroke: 1.5px var(--color-accent);
+  }
+  .g-card--featured:hover .g-card__num--accent {
+    color: var(--color-accent);
+    -webkit-text-stroke: 0px transparent;
+  }
+  .g-card__media--type {
+    place-items: start;
+    align-content: center;
+    padding: clamp(22px, 4vw, 40px);
+    gap: 14px;
+    border-color: rgba(255, 68, 0, 0.35);
+  }
+  .g-feat__badge {
+    color: var(--color-accent);
+  }
+  .g-feat__name {
+    font-family: var(--font-display);
+    font-size: clamp(3.6rem, 7vw, 6rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: var(--color-fog);
+  }
+  .g-feat__tagline {
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    color: var(--color-fog-dim);
+  }
+  .g-feat__stats {
+    display: flex;
+    gap: clamp(18px, 3vw, 36px);
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .g-feat__stat {
+    display: grid;
+    gap: 2px;
+  }
+  .g-feat__stat-big {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    color: var(--color-fog);
+  }
+
+  .g-card__info {
+    padding: 18px 4px 0;
+  }
+  .g-card__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+  .g-card__desc {
+    color: var(--color-fog-dim);
+    font-size: 0.92rem;
+    margin: 8px 0 10px;
+    max-width: 38ch;
+  }
+  .g-card__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+  }
+  .g-card__tags { color: var(--color-fog-faint); }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Galería horizontal pineada — solo escritorio y sin reduced-motion.
+  // En móvil/reduced queda el carrusel nativo con scroll-snap.
+  const mm = gsap.matchMedia();
+  mm.add(
+    "(min-width: 900px) and (prefers-reduced-motion: no-preference)",
+    () => {
+      const track = document.getElementById("gallery-track");
+      const section = document.getElementById("projects");
+      if (!track || !section) return;
+
+      track.classList.add("is-pinned");
+      const getDistance = () => track.scrollWidth - window.innerWidth;
+
+      const tween = gsap.to(track, {
+        x: () => -getDistance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => "+=" + getDistance(),
+          scrub: 0.8,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Skew sutil según velocidad de scroll (efecto firma)
+      const cards = gsap.utils.toArray<HTMLElement>(".g-card__media");
+      const skewTo = gsap.quickTo(cards, "skewX", { duration: 0.4, ease: "power2.out" });
+      const st = ScrollTrigger.create({
+        trigger: section,
+        start: "top bottom",
+        end: "bottom top",
+        onUpdate: (self) => {
+          const v = gsap.utils.clamp(-6, 6, self.getVelocity() / -300);
+          skewTo(v);
+        },
+      });
+
+      return () => {
+        track.classList.remove("is-pinned");
+        tween.scrollTrigger?.kill();
+        tween.kill();
+        st.kill();
+        gsap.set(track, { x: 0 });
+        gsap.set(cards, { skewX: 0 });
+      };
+    }
+  );
+</script>
